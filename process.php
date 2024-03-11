@@ -18,6 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 function customCalculate($expression) {
+    $expression = str_replace('sin', 's', $expression);
+    $expression = str_replace('cos', 'c', $expression);
+    $expression = str_replace('tan', 't', $expression);
+    
     $tokens = tokenizeExpression($expression);
     $output = [];
     $stack = [];
@@ -27,6 +31,9 @@ function customCalculate($expression) {
         '/' => 2,
         '+' => 1,
         '-' => 1,
+        's' => 3,
+        'c' => 3,
+        't' => 3,
     ];
 
     foreach ($tokens as $token) {
@@ -54,6 +61,15 @@ function customCalculate($expression) {
     foreach ($output as $token) {
         if (is_numeric($token)) {
             array_push($result, $token);
+        } elseif ($token == 's') {
+            $operand = array_pop($result);
+            array_push($result, sin($operand));
+        } elseif ($token == 'c') {
+            $operand = array_pop($result);
+            array_push($result, cos($operand));
+        } elseif ($token == 't') {
+            $operand = array_pop($result);
+            array_push($result, tan($operand));
         } else {
             $operand2 = array_pop($result);
             $operand1 = array_pop($result);

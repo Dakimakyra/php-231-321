@@ -25,6 +25,9 @@
     <button onclick="addToDisplay('0')">0</button>
     <button onclick="addToDisplay(')')">)</button>
     <button onclick="addToDisplay('/')">/</button><br><br>
+    <button onclick="addToDisplay('sin(')">sin</button>
+    <button onclick="addToDisplay('cos(')">cos</button>
+    <button onclick="addToDisplay('tan(')">tan</button>
 
     <button onclick="clearDisplay()">Очистить</button>
     <button onclick="calculate()">Вычислить</button>
