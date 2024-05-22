@@ -1,37 +1,26 @@
+
 <!DOCTYPE html>
-<html lang="ru">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>laba 1</title>
+  <title>сортер</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
-    <header>
-        <div class="header__wrapper">
-            <img src="img/Logo_Polytech_rus_main.jpg" alt="Moscow Polytech logo" class="header__image">
-            <h1 class="header__headline">Hello, World!</h1>
-        </div>
-    </header>
-
-    <main>
-        <div class="main__wrapper">
-            <?php
-                $hello = '<p class="main__text">Приветствую! </p>';
-                $homeWork = '<p class="main__text">Домашнее задание №1</p>';
-                echo $greeting;
-                echo $homeWork;
-            ?>
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer__wrapper">
-            <p class="footer__paragraf">Кашкин Владислав Игоревич</p>
-        </div>
-    </footer>
+  <h1>сортер</h1>
+  <?php 
+  session_start();
+  if (!isset($_SESSION['user_id'])): ?>
+    <form action="login.php" method="post">
+      <label for="email">Почта:</label>
+      <input type="email" name="email" required><br>
+      <label for="password">Пароль:</label>
+      <input type="password" name="password" required><br>
+      <button type="submit">Зайти</button>
+    </form>
+  <?php else: ?>
+    <p>Welcome, <?= $_SESSION['name'] ?>!</p>
+    <a href="messages.php">Посмотреть сообщение</a>
+    <a href="logout.php">Logout</a>
+  <?php endif; ?>
 </body>
 </html>
